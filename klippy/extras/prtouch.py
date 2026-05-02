@@ -432,7 +432,7 @@ class PRTouchZOffsetWrapper:
         z_list = list(z_probe)
         z_list[2] = homing_origin[2] + z_adjust - start_z_offset
         z_probe = tuple(z_list)
-        self.probe_calibrate_finalize(prtouch_result)
+        self.probe_calibrate_finalize(z_probe)
 
     cmd_PRTOUCH_ACCURACY_help = "Probe Z-height accuracy at sensoor position"
     def cmd_PRTOUCH_ACCURACY(self, gcmd):
