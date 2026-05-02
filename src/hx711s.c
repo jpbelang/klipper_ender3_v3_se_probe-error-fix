@@ -52,11 +52,12 @@ command_config_hx711s(uint32_t *args)
     struct hx711s* h = oid_alloc(args[0], command_config_hx711s, sizeof(*h));
     h->oid = args[0];
     h->hx711_count = args[1];
-    if (h->hx711_count > 4)
+    if (h->hx711_count > 4) // JP Fix
         shutdown("Max of 4 hx711");
-	h->flags = 0;
-	h->rest_ticks = HX711S_SAMPLE_REST_TICKS;
-	h->hx711s_timer.func = hx711s_sample_event;
+    h->flags = 0;
+    h->rest_ticks = HX711S_SAMPLE_REST_TICKS;
+    h->hx711s_timer.func = hx711s_sample_event;
+    
     sendf("debug_hx711s oid=%c arg[0]=%u arg[1]=%u arg[2]=%u arg[3]=%u", (int)args[0], (int)args[0], (int)args[1], 0, 0);
 }
 DECL_COMMAND(command_config_hx711s, "config_hx711s oid=%c hx711_count=%c");
